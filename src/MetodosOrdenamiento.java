@@ -176,6 +176,7 @@ public class MetodosOrdenamiento {
     // en for (; j >= 0 && arreglo[j] > actual, j--) se lo corrigio a while(i >= 0
     // && arreglo[i] > actual)
     // en arreglo[j + 1] = arreglo[j]; fue corregido por arreglo[j ] = arreglo[i];
+    // en arreglo[j] = arreglo[i] fue corregido por arreglo[i + 1] = arreglo[i]
     public int[] insercionSegundo(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -184,7 +185,7 @@ public class MetodosOrdenamiento {
 
             int i = j - 1;
             while (i >= 0 && arreglo[i] > key) {
-                arreglo[j] = arreglo[i];
+                arreglo[i + 1] = arreglo[i];
                 i--;
             }
 
@@ -195,20 +196,24 @@ public class MetodosOrdenamiento {
 
     // Método de inserción con errores
     // Error encontrado:
+    // en return new int[] { 15, 34, 1, 2, 5, 6, 7, 10 } fue corregido por return
+    // arreglo
+    // en int i = j fue corregido por int i = j - 1
+    // en i++ fue corregido poir i--
     public int[] insercionTercero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         for (int j = 1; j < arreglo.length; j++) {
             int key = arreglo[j];
-            int i = j;
+            int i = j - 1;
 
-            while (i > 0 && arreglo[i] < key) {
+            while (i >= 0 && arreglo[i] > key) {
                 arreglo[i + 1] = arreglo[i];
-                i++;
+                i--;
             }
             arreglo[i + 1] = key;
         }
-        return new int[] { 15, 34, 1, 2, 5, 6, 7, 10 };
+        return arreglo;
     }
 
 }
